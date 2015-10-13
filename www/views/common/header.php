@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=320, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
 <?php
-	require_once(VIEW_PATH . 'headerbase/'. DispatchController::$headerBase. '.php');
+	require_once(VIEW_PATH . '/headerbase/'. DispatchController::$headerBase. '.php');
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="author" content="しふたろう">
 
 <?php
  if(!empty(DispatchController::$cardsmeta)){
-	require_once(VIEW_PATH . 'cardsmeta/'. DispatchController::$cardsmeta. '.php');
+	require_once(VIEW_PATH . '/cardsmeta/'. DispatchController::$cardsmeta. '.php');
 }else{
-	require_once(VIEW_PATH . 'cardsmeta/'. DispatchController::$DEFAULT_CARDSMETA. '.php');
+	require_once(VIEW_PATH . '/cardsmeta/'. DispatchController::$DEFAULT_CARDSMETA. '.php');
 }
 ?>
 
@@ -64,7 +64,7 @@ foreach(DispatchController::$additionalScripts as $index=>$filename){
 						<li id="top"><a href="/"><img src="/img/common/null.png" /></a></li>
 						<li id="about"><a href="/about"><img src="/img/common/null.png" /></a></li>
 						<li id="oekaki"><a href="/oekaki"><img src="/img/common/null.png" /></a></li>
-						<li id="appli"><a href="/applli"><img src="/img/common/null.png" /></a></li>
+						<li id="appli"><a href="/appli"><img src="/img/common/null.png" /></a></li>
 					</ul>
 				</div>
 			</div>

@@ -3,7 +3,7 @@ define("ROOTDIR", dirname(dirname(dirname(__FILE__))));//from properties
 define("SYSDIR", ROOTDIR. '/www/');//from properties
 define("IMAGE_PATH", SYSDIR. '/images/');
 define("PICT_PATH", ROOTDIR. '/pictures/');
-define("THUMB_PATH", ROOTDIR. '/thmubs/');
+define("THUMB_PATH", ROOTDIR. '/thumbs/');
 // define("MUSIC_PATH", SYSDIR. '/music/');
 define("MUSIC_PATH", ROOTDIR. '/music/');
 define("SOUNDS_PATH", SYSDIR. '/sounds/');
@@ -13,7 +13,9 @@ define("MODEL_PATH", SYSDIR. "models/");
 define("CONTROLLER_PATH", SYSDIR. "controllers/");
 define("DATA_PATH", SYSDIR. "datafiles/");
 define("PROP_PATH", SYSDIR. "properties/");
-define("VIEW_PATH", SYSDIR. "views/");
+define("VIEW_PATH", SYSDIR. "views");
+define("TEMPLATE_PATH", VIEW_PATH. "/templates");
+
 define("CSS_PATH", SYSDIR. "css/");
 define("JS_BASE_DIR", SYSDIR. "js/");
 

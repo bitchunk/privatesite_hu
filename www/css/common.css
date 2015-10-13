@@ -1,3 +1,8 @@
+/**
+ * 	Hitokuchi-hu Theme
+ */
+
+
 @CHARSET "UTF-8";
 @font-face{
 	font-family:'yutapon';
@@ -24,7 +29,7 @@ body{
 	padding:0;
 }
 
-ul{
+ul, li, dl, dt, dd{
 	margin:0;
 	padding:0;
 }
@@ -41,6 +46,7 @@ img{
 h1, h2{
 	padding:0;
 	margin:0;
+	font-size: 1.5rem;
 }
 
 a{
@@ -71,10 +77,6 @@ section h1:after{
 	content:'】';
 }
 
-section p:first-line, section p:last-line{
-	line-height:0;
-	white-space: normal;
-}
 section p{
 	margin:0;
 	padding:0;
@@ -274,7 +276,13 @@ footer span.auther{
 footer span.copyright{
 }
 
+hr{
+	border-width: 0 0.4rem 0.8rem 16.0rem;
+	border-style: solid;
+	border-color: #ae8d19 transparent;
+	border-radius: 3rem;
 
+}
 
 
 #mailprompt{
@@ -313,17 +321,19 @@ audio{
 span{
 	vertical-align: middle;
 }
-
+/*
 .sublink a{
-	font-size:14px;
+	font-size:0.8rem;
 }
-
+*/
 .clear{
 	font-size:0;
 	line-height:0;
+	height:0;
 	visibility: hidden;
 	display:block;
 	clear:both;
+	border-width: 1px 0 0 0;
 }
 
 .text_red{
@@ -359,4 +369,109 @@ span{
 }
 
 
+article.about section p:first-line,article.about section p:last-line{
+	line-height:0;
+	white-space: normal;
+}
 
+/**
+ * 	oekaki style
+ */
+
+article.oekaki ul{
+	margin: 0 1rem;
+	line-height:0;
+	width: 94%;
+	transition-duration: 0.2s;
+	height: auto;
+	font-size: 0;
+	text-align:left;
+	/*background-color:gray; */
+}
+article.oekaki ul:hover{
+	transition-duration: 0.2s;
+	padding: 0.5rem 0;
+	
+}
+
+article.oekaki li{
+	display: inline-block;
+	background-color:black; 
+}
+/*article.oekaki li:hover{
+	
+}*/
+article.oekaki ul img{
+	transition-duration: 0.2s;
+	height:60px;
+	z-index:0;
+	position:static;
+	top:0px;
+}
+article.oekaki ul img:hover{
+	transition-duration: 0.2s;
+	height:80px;
+	margin:-10px;
+	z-index:100;
+	position:relative;
+	top:-10px;
+}
+
+article.oekaki time:before{
+	content: '●';
+	padding: 0 0.2rem;
+	display: inline-block;
+	text-indent: -0.5rem;
+
+}
+article.oekaki time{
+	margin: 1rem 0 -1px 0;
+	float:left;
+	background-color: #AE8D19;
+	color: white;
+	padding: 0.2rem 1.4rem 0.2rem 1rem;
+	border-radius: 0 1rem;
+	font-size: 0.8rem;
+	line-height: 0.8;
+	vertical-align: middle;
+}
+
+/*article.oekaki a:hover{
+	transition-duration: 0.3s;
+	height:120%;
+}*/
+article.appli p{
+	margin:1rem 0;
+	padding:0;
+}
+
+article.appli section dt{
+	font-size: 1.3rem;
+	margin: 1rem 0 0.5rem 0;
+	font-weight: bold;
+}
+
+article.appli section dd{
+	white-space: pre-wrap;
+	text-align:left;
+}
+article.appli section dd:first-line
+{
+	line-height:0;
+	white-space: normal;
+}
+
+article.appli section dd{
+	width: 90%;
+	margin: 0 auto;
+	text-align:center;
+}
+
+article.appli section dd.description{
+	width: 90%;
+	text-align:left;
+}
+
+article.appli section iframe{
+	margin:0 auto;
+}

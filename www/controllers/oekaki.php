@@ -10,7 +10,7 @@
 	// 'litrokeyboard' => 'LitroKeyboard',
 	// 'common' => 'その他',
 	// );
-	$dir = glob(PICT_PATH. '*', GLOB_ONLYDIR);
+	$dir = glob(THUMB_PATH. '*', GLOB_ONLYDIR);
 	$pictDirs = array();
 	// foreach($dir as $id => $name){
 	// $info = array();
@@ -26,22 +26,30 @@
 		$pictDirs[$category] = array();
 		$year_dir = glob($category_path. '/*', GLOB_ONLYDIR);
 		foreach($year_dir as $year_path){
+			$filesTime = array();
 			$year = basename($year_path);
 			if(isset($ignore[$category][$year]) && $ignore[$category][$year] === true){
 				continue;
 			}
-			$pictDirs[$category][$year] = array();
+			$pictDirs[$category][$year. ''] = array();
+			// var_dump($pictDirs);
 			$pictFiles = glob($year_path. '/'. '{*.jpg,*.jpeg,*.gif,*.png}', GLOB_BRACE);
 			foreach($pictFiles as $pict_path){
 				$pict = basename($pict_path);
 				if(isset($ignore[$category][$year]) && $ignore[$category][$year] === $pict){
 					continue;
 				}
-				$pictDirs[$category][$year] = PICT_URI. '/'. $category. '/'. $year. '/'. $pict;
-				
+				$pictDirs[$category][$year][] = array(
+					'pict' => PICT_URI. '/'. $category. '/'. $year. '/'. urlencode($pict)
+				,	'thumb' => THUMB_URI. '/'. $category. '/'. $year. '/'. urlencode($pict)
+				);
+				$filesTime[] = filemtime($pict_path);
 			}
+			array_multisort($pictDirs[$category][$year], SORT_ASC, $filesTime);
 		}
-		var_dump($pictDirs);
+		krsort($pictDirs[$category]);
+		
+		// var_dump($pictDirs['tothkua']);
 	}
 	
 	// var_dump($dir);
