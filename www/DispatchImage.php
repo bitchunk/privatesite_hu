@@ -3,11 +3,11 @@ chdir(dirname(__FILE__));
 require_once ('./properties/common.php');
 class ImageDumper {
 	static $PICTURE_DIR = 'pictures';
-	static $THUMB_DIR = 'thumb';
+	static $THUMB_DIR = 'thumbs';
 	static $CONTENT_TYPE_THUMB = 'image/jpeg';
 
 	static function dump() {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uri = urldecode($_SERVER['REQUEST_URI']);
 		if (!empty($uri)) {
 			$separate = explode('/', $uri);
 			$dir = $separate[1];
@@ -17,6 +17,7 @@ class ImageDumper {
 			self::notfound();
 			exit ;
 		}
+		
 		if (count($separate) <= 2) {
 			self::notfound();
 			exit ;
@@ -74,4 +75,3 @@ class ImageDumper {
 
 
 ImageDumper::dump();
-?>

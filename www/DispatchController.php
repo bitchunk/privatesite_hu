@@ -64,9 +64,9 @@ class DispatchController {
 			$viewPageName = 'notfound';
 		}
 		require_once (CONTROLLER_PATH . $viewPageName . '.php');
-		require_once (VIEW_PATH . 'common/header.php');
-		require_once (VIEW_PATH . $viewPageName . '.php');
-		require_once (VIEW_PATH . 'common/footer.php');
+		require_once (VIEW_PATH . '/common/header.php');
+		require_once (VIEW_PATH . '/'. $viewPageName . '.php');
+		require_once (VIEW_PATH . '/common/footer.php');
 	}
 	
 	static function appendJS($filename)
