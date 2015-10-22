@@ -17,7 +17,7 @@
 ケモノなキャラクターに魅入られて現在に至る。
 主に鼬キャラ好きです。
 レトロゲームを好み、ドット絵を描くこともあります。
-音関連に趣があります。自作のDTMを作ってます。ゲームはいつか作りますたぶん・・・
+自作のDTMを作ってます。ゲームはいつか作りますたぶん・・・
 			</p>
 			<div class="sns_buttons">
 				<a href="https://twitter.com/shiftal_on" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @shiftal_on</a>

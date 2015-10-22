@@ -1,8 +1,10 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@shiftal_on" />
-<meta name="twitter:title" content="bitchnk" />
-<meta name="twitter:description" content="ケモノ系創作物置き場" />
+<meta name="twitter:title" content="ひとくちふ" />
+<meta name="twitter:description" content="ひとくちけものおきば" />
 <meta name="twitter:creator" content="@shiftal_on" />
-<meta name="twitter:image:src" content="http://bitchunk.kemono.jp/images/appicon/bitchunk.png" />
-<meta name="twitter:domain" content="bitchunk.kemono.jp" />
-<link rel="shortcut icon" href="images/favicon/tekt16.png" />
+<meta name="twitter:image:src" content="http://hitokuchihu.kemono.jp/img/appicon/twicardtekt_hu.png" />
+<meta name="twitter:domain" content="hitokuchihu.kemono.jp" />
+<link rel="shortcut icon" type="image/png" href="/img/favicon/favtekt_hu.png" />
+<link rel="apple-touch-icon" href="/img/appicon/apptekt_hu.png" />
+<meta name="apple-mobile-web-app-title" content="ひとくちふ" />
