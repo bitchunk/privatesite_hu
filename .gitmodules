@@ -1,0 +1,6 @@
+[submodule "www/js/chunklekit"]
+	path = www/js/chunklekit
+	url = git@github.com:oshiimizunohuta/chunklekit.git
+[submodule "www/js/litrosound"]
+	path = www/js/litrosound
+	url = git@github.com:oshiimizunohuta/litrosound.git
