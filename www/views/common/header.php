@@ -47,7 +47,7 @@
 </script>
 <?php
 foreach(DispatchController::$additionalScripts as $index=>$filename){
-	echo '<script src="/js/'. $filename. '"></script>';
+	echo '<script src="/js/'. $filename. '"></script>'. "\n";
 }
 
 ?>

@@ -19,7 +19,9 @@ class DispatchController {
 		$get = $_GET;
 		$match = array();
 		
-		preg_match('/\/([^\s\/]*)\/?([^\s\/\?]*)?/', $uri, $match);
+		// preg_match('/\/([^\s\/]*)\/?([^\s\/\?]*)?/', $uri, $match);
+		preg_match('/\/([^\s\/\?]*)\/?([^\s\/\?]*)?/', $uri, $match);
+		
 		
 		if (!empty($match[0])) {
 			$separate = explode('/', $uri);
@@ -31,7 +33,7 @@ class DispatchController {
 		if (empty($name)) {
 			$name = 'index';
 		}
-		
+		// var_dump($uri);
 		if(!empty($get['app'])){
 			$name = $get['app'];
 			self::appView($name);
