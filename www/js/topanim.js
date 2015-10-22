@@ -468,19 +468,19 @@ HuTop.prototype = {
 			}
 			, pat2 = function(){
 				dsc(f.comod_bottom_02, rect.x, combY);
-				dsc(f.hu_a_02, rect.x, huY);
+				dsc(f.hu_a_01, rect.x, huY);
 				dsc(f.comod_02, rect.x, rect.y + 1);
 				dsc(f.comod_arm_02, rect.x + 1, comaY + 1);
 			}
 			, pat3 = function(){
 				dsc(f.comod_bottom_01, rect.x, combY);
-				dsc(f.hu_a_03, rect.x, huY + 1);
+				dsc(f.hu_a_02, rect.x, huY + 1);
 				dsc(f.comod_02, rect.x, rect.y + 1);
 				dsc(f.comod_arm_01, rect.x, comaY + 1);
 			}
 			, pat4 = function(){
 				dsc(f.comod_bottom_01, rect.x, combY);
-				dsc(f.hu_a_01, rect.x, huY);
+				dsc(f.hu_a_03, rect.x, huY);
 				dsc(f.comod_01, rect.x, rect.y);
 				dsc(f.comod_arm_01, rect.x + 1, comaY);
 			}
