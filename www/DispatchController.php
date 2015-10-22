@@ -6,6 +6,7 @@ class DispatchController {
 	static $DEFAULT_CARDSMETA = 'common';
 	static $cardsmeta = null;
 	static $additionalScripts = array();
+	static $additionalHeaders = array();
 	static $donateButton = '';
 	static $headerBase = 'common';
 	static $breadcrumb = array(array('name' => 'とっぷ', 'link' => '/'));
@@ -69,6 +70,10 @@ class DispatchController {
 		require_once (VIEW_PATH . '/common/header.php');
 		require_once (VIEW_PATH . '/'. $viewPageName . '.php');
 		require_once (VIEW_PATH . '/common/footer.php');
+	}
+	static function appendHeader($tag)
+	{
+		self::$additionalHeaders[] = $tag;
 	}
 	
 	static function appendJS($filename)

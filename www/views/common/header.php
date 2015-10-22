@@ -49,7 +49,9 @@
 foreach(DispatchController::$additionalScripts as $index=>$filename){
 	echo '<script src="/js/'. $filename. '"></script>'. "\n";
 }
-
+foreach(DispatchController::$additionalHeaders as $index=>$tags){
+	echo $tags. "\n";
+}
 ?>
 </head>
 <body>

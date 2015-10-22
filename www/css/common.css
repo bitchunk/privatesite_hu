@@ -374,6 +374,13 @@ article.about section p:first-line,article.about section p:last-line{
 	white-space: normal;
 }
 
+article.about section .sns_buttons{
+	text-align: right;
+	white-space: normal;
+}
+article.about section .sns_buttons>div{
+	/*display:inline-block;*/
+}
 /**
  * 	oekaki style
  */
