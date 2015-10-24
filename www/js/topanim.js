@@ -47,6 +47,8 @@ var COLOR_ARRAY = [[248, 120, 88, 255], [252, 168, 68, 255], [248, 184, 0, 255],
 
 var USER_ID = 1;
 var HU;
+var DEBUG_RASTER_DIFF = 0.1;
+var DEBUG_RASTER_SIN = 0.7;
 
 function HuTop(){
 	return;
@@ -76,9 +78,9 @@ HuTop.prototype = {
 		this.initKeys();
 
 		this.loadImages();
+		this.initViewMode();
 		this.initWords();
 		this.initCanvas();
-		this.initViewMode();
 		this.initEventFunc();
 		this.initSoundEffect();
 		
@@ -316,6 +318,12 @@ HuTop.prototype = {
 	
 	keycheck: function ()
 	{
+		if(this.keyControll.getTrig('space')){
+			scrollByName('bg1').screenShot();
+			scrollByName('bg2').screenShot();
+			scrollByName('bg3').screenShot();
+			scrollByName('view').screenShot();
+		}
 		return;
 	},
 	
@@ -332,14 +340,13 @@ HuTop.prototype = {
 	drawbgBatch: function()
 	{
 		this.drawBg();
+		this.drawTitle();
 		this.drawConveyor();
 		this.drawHuStream();
 		this.drawCutCase();
 		this.drawTektMogmog();
 		this.drawComodKuru();
-		// this.drawCutPress();
-
-				// this.drawStackDraw();
+		
 	},
 	
 	drawBg: function()
@@ -358,7 +365,7 @@ HuTop.prototype = {
 		dsc(f.pillar_bottom, cto(17), cto(11));
 		
 		dsc(f.titleboard, 0, cto(4));
-		dsc(f.hitokuchihu, cto(0), cto(6));
+		// dsc(f.hitokuchihu, cto(0), cto(6));
 		dsc(f.copyright, cto(12), cto(10));
 		
 		
@@ -410,6 +417,45 @@ HuTop.prototype = {
 
 	},
 	
+	drawTitle: function()
+	{
+		var bg = scrollByName('bg2')
+			, f = this.frameSprites
+			, cto = cellhto
+			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
+			, self = this
+			, y = cto(6)
+			, rect = makeRect(cto(0), cto(0), cto(20), cto(5))
+		;
+		
+		dsc(f.hitokuchihu, 0, rect.y);
+		bg.setRasterHorizon(rect.y, 0, y);
+
+		this.pushStackDraw('title', function(){
+			var cto = cellhto
+			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
+			, cnt = self.drawCount
+			, endcnt = 300
+			, diff = endcnt - cnt
+			// , d = Math.sin(diff) * 0.5
+			, x
+			;
+			if(diff > 0){
+				for(i = 0; i < rect.h; i++){
+					x = Math.sin(i + (diff * 0.25)) * diff * 0.15;
+					// x = Math.sin(i + (cnt * DEBUG_RASTER_SIN)) * 240 * DEBUG_RASTER_DIFF;
+					bg.setRasterHorizon(rect.y + i, x, y + i);
+				}
+			}else{
+					bg.setRasterHorizon(rect.y, 0, y);
+				
+			}
+			
+			
+		});
+
+	},
+	
 	drawTektMogmog: function()
 	{
 		var bg = scrollByName('bg2')
@@ -418,9 +464,10 @@ HuTop.prototype = {
 			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
 			, self = this
 			, y = cto(10.5)
-			, rect = makeRect(cto(6), 0, cto(3), cto(3))
+			, rect = makeRect(cto(6), cto(5), cto(3), cto(3))
 		;	
 		dsc(f.tekt_01, rect.x, rect.y);
+		// return;
 		this.removeStackDraw('tektmogmog');
 		dsc = null;
 		bg.setRasterHorizon(rect.y, 0, y);
@@ -456,10 +503,10 @@ HuTop.prototype = {
 			, self = this
 			, comdY = cto(0)
 			, y = cto(10.5)
-			, comaY = cto(2)
-			, combY = cto(3)
-			, huY = cto(2) + 2
-			, rect = makeRect(cto(1), 0, cto(4), cto(4))
+			, rect = makeRect(cto(1), cto(5), cto(4), cto(4))
+			, comaY = rect.y + cto(2)
+			, combY = rect.y + cto(3)
+			, huY = rect.y + cto(2) + 2
 			, pat1 = function(){
 				dsc(f.comod_bottom_02, rect.x, combY);
 				dsc(f.hu_a_01, rect.x, huY);
@@ -509,7 +556,7 @@ HuTop.prototype = {
 		dsc(f.comod_01, rect.x, rect.y + 1);
 		dsc(f.comod_arm_01, rect.x, comaY);
 		dsc(f.comod_bottom_01, rect.x, combY);
-
+// return;
 		this.removeStackDraw('comodkuru');
 		// dsc = null;
 		bg.setRasterHorizon(rect.y, 0, y);
@@ -538,15 +585,15 @@ HuTop.prototype = {
 			, cto = cellhto
 			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
 			, self = this
-			, huY = cto(8)
-			, pressY = cto(12)
+			, huY = cto(11)
+			, pressY = cto(14)
 		;
 		// dsc(f.conveyor, cto(11), cto(4)); + 3
-		// dsc(f.hu_plane, cto(0), cto(7)); + 3
+		// dsc(f.hu_plane, cto(0), huY);// + 3
 		dsc(f.cutcase_press, cto(10), pressY); // +1
 		this.removeStackDraw('hustream');
 		dsc = null;
-
+// return;
 		this.pushStackDraw('hustream', function(){
 			var i, cto = cellhto
 			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
@@ -560,7 +607,7 @@ HuTop.prototype = {
 			, x = cto(3)
 			, pos, rate, posx
 			, cnt = self.drawCount % conveyor
-			, height = cto(3)
+			// , height = cto(3)
 			;
 			if(cnt < firstWait){
 				if(cnt == 0){dsc(f.hu_plane, 0, huY);}
@@ -602,7 +649,7 @@ HuTop.prototype = {
 				bg.setRasterHorizon(huY, posx | 0, pos | 0);
 				bg.setRasterHorizon(pressY, 0, cto(4));
 			}
-			bg.setRasterHorizon(huY + height, 0, 0);
+			// bg.setRasterHorizon(huY + height, 0, 0);
 			dsc = null;
 			cto = null;
 		});
@@ -615,9 +662,10 @@ HuTop.prototype = {
 			, cto = cellhto
 			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
 			, self = this
-			,conY = cto(4)
+			,conY = cto(9)
 		;
 		dsc(f.conveyor, cto(11), conY);
+		// return;
 		// dsc(f.conveyor, cto(11), cto(13));
 		dsc = null;
 		this.pushStackDraw('conveyor', function(){
@@ -794,8 +842,9 @@ window.addEventListener('load', function() {
 		;
 	HU = new HuTop();
 		
-	// if(client.isSmartDevice){
-	// }
+	if(client.isSmartDevice){
+		VIEWMULTI = 2;
+	}
 	
 	
 	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;

@@ -32,13 +32,17 @@ body{
 ul, li, dl, dt, dd{
 	margin:0;
 	padding:0;
+	background-repeat:no-repeat;
 }
 li{
 	text-decoration: none;
 	list-style: none;
+	background-repeat:no-repeat;
+
 }
 
 img{
+	background-repeat:no-repeat;
 	margin:0;
 	padding:0;
 }
@@ -53,6 +57,7 @@ a{
 	color: hsl(80, 30%, 60%);
 	font-weight: bold;
 	text-decoration:underline;
+	background-repeat:no-repeat;
 }
 a:hover{
 	color: hsl(80, 30%, 80%);
@@ -118,11 +123,16 @@ nav .otemoto{
 .otemoto h1,.otemoto h2{
 	background-image: url('/img/common/otmt_back.png');
 	background-repeat: repeat-x;
-	width:36%;
-	min-width: 268px;
+	width:20%;
+	min-width: 160px;
 	height:48px;
 	margin:0;
 	float:left;
+	line-height: 48px;
+}
+.otemoto h1 #banner{
+	width: 100px;
+	height: auto;
 }
 
 .otemoto .otmt_sep{
@@ -135,6 +145,7 @@ nav .otemoto{
 }
 .otemoto .menu{
 /*	width:64%;*/
+	/*min-width:640px;*/
 	height:48px;
 	margin:0;
 	float:left;
@@ -142,6 +153,11 @@ nav .otemoto{
 .otemoto .menu ul{
 	margin: 0.6rem;
 	font-size: 0;
+	float:right;
+}
+
+.otemoto .menu ul #youji{
+	display:none;
 }
 
 .otemoto .menu li, .otemoto .menu a{
@@ -153,14 +169,16 @@ nav .otemoto{
 	float:left;
 }
 
-.otemoto .menu a, .otemoto .menu a:hover, .otemoto .menu a img:hover{
+.otemoto .menu a,
+.otemoto .menu a:hover,
+.otemoto .menu a img:hover,
+{
 	transition-property: all;
 	transition-timing-function: ease;
 	transition-delay: initial;
 }
 
 .otemoto .menu a{
-	background-repeat:no-repeat;
 	background-position: center center;
 	width:96px;
 	display:block;
@@ -176,7 +194,6 @@ nav .otemoto{
 }
 
 .otemoto .menu a img{
-	background-repeat:no-repeat;
 	background-position: center right;
 	transition-duration: 0.4s;
 	width:96px;
@@ -189,6 +206,82 @@ nav .otemoto{
 	opacity:1;
 }
 
+@media screen and (max-width:640px){
+	.otemoto .menu #banner{
+		z-index: 100;
+		position: absolute;
+	}
+	.otemoto .menu ul{
+		background-image:url('/img/common/youji_bg.png');
+		background-position-x: 256px;
+		position:absolute;
+		right:0;
+		margin: 0;
+		width:128px;
+		overflow:hidden;
+		transition-duration: 0.2s;
+	}
+	.otemoto .menu ul.clip{
+		background-position: top right;
+		width:48px;
+		height:48px;
+		padding: 0;
+		transition-duration: 0.6s;
+	}
+	
+	.otemoto .menu ul #youji{
+		display:block;
+		position:relative;
+		right:0;
+		margin-bottom: 0;
+		padding: 0;
+		background-image:url('/img/common/youji.png');
+		background-position: top right;
+		width:48px;
+		height:48px;
+		background-color:transparent;
+	}
+	
+	.otemoto .menu ul #youji a{
+		background-image:url('/img/common/youji_clip.png');
+		transition-duration: 0.2s;
+		background-position-x: 256px;
+
+	}	
+	.otemoto .menu ul.clip #youji a{
+		background-position: top right;
+		width:48px;
+		height:48px;
+		opacity:1;
+		transition-duration: 0.6s;
+	}
+	
+	.otemoto .menu li{
+		background-color:white;
+		padding: 0 0.5rem;
+		width:128px;
+	}
+
+	.otemoto .menu li, .otemoto .menu a{
+		float:none;
+		padding-bottom: 0.5rem;
+	}
+	.otemoto .menu a{
+		background-position: center left;
+	}
+	.otemoto .menu a img{
+		position: absolute;
+		right: 0;
+		width:96px;
+		height:32px;
+		opacity:1;
+		transition-duration: 1.1s;
+	}
+	.otemoto .menu ul.clip a img{
+		transition-duration: 0.6s;
+		opacity:0;
+	}
+}
 
 .otemoto .menu #top a{
 	background-image:url('/img/common/icon_top.png');

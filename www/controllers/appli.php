@@ -1,4 +1,3 @@
-<?
-		self::appendBreadCrumb('あばうと', 'about');
-		self::setPageTitle('あばうと');
-?>
+<?php
+		self::appendBreadCrumb('あぷり', 'appli');
+		self::setPageTitle('あぷり');

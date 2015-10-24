@@ -30,7 +30,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/js/lib/jquery-2.0.0.min.js"></script>
 <script src="/js/lib/jquery.easing.1.3.js"></script>
-<script src="/js/lib/common.js"></script>
+<script src="/js/common.js"></script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -44,7 +44,7 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
+	
 </script>
 <?php
 foreach(DispatchController::$additionalScripts as $index=>$filename){
@@ -61,9 +61,10 @@ foreach(DispatchController::$additionalHeaders as $index=>$tags){
 	<header>
 		<nav>
 			<div class="otemoto">
-				<h1><span class="hide">メニュー</span><a href="<?php echo PROTOCOL_HOST; ?>"><img src="/img/common/banner_2x.png"></a><div class="otmt_sep">&nbsp;</div></h1>
+				<h1><span class="hide">メニュー</span><a href="<?php echo PROTOCOL_HOST; ?>"><img id="banner" src="/img/banner/banner_nav.png"></a><div class="otmt_sep">&nbsp;</div></h1>
 				<div class="menu">
-					<ul>
+					<ul class="clip">
+						<li id="youji"><a href="javascript:void(0)"><img src="/img/common/null.png" /></a></li>
 						<li id="top"><a href="/"><img src="/img/common/null.png" /></a></li>
 						<li id="about"><a href="/about"><img src="/img/common/null.png" /></a></li>
 						<li id="oekaki"><a href="/oekaki"><img src="/img/common/null.png" /></a></li>
@@ -71,6 +72,7 @@ foreach(DispatchController::$additionalHeaders as $index=>$tags){
 					</ul>
 				</div>
 			</div>
+			<hr class="clear" />
 			<ul class="breadcrumb"><?php echo DispatchController::outputBreadCrumb(); ?></ul>
 			<!-- <div class="donate"><?php if(!empty(self::$donateButton)){echo self::$donateButton;}?></div> -->
 			<hr class="clear" />
