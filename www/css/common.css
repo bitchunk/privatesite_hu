@@ -20,7 +20,8 @@ html, body{
 
 body{
 	background-color:#fff4cf;
-	line-height:20px;
+	/*line-height:20px;*/
+	line-height:1.3rem;
 	border-style: none; border-width: 1px;
 	text-shadow:0px 0px 1px #ddeeff;
 /*	background-image:url(/images/common/crysta_top_h.png);*/
@@ -51,6 +52,7 @@ h1, h2{
 	padding:0;
 	margin:0;
 	font-size: 1.5rem;
+	line-height:1.6rem;
 }
 
 a{
@@ -102,6 +104,7 @@ section{
 	height: auto !important;
 	height: 100%;
 	position: relative;
+	overflow: hidden;
 }
 
 header{
@@ -118,6 +121,8 @@ nav .otemoto{
 	height: 48px;
 	background-image:url('/img/common/otmt_front.png');
 	background-repeat: repeat-x;
+	min-width:1024px;
+	overflow: hidden;
 }
 
 .otemoto h1,.otemoto h2{
@@ -154,7 +159,10 @@ nav .otemoto{
 	margin: 0.6rem;
 	font-size: 0;
 	float:right;
-}
+	/*height: 32px;
+    overflow: hidden;
+    position: relative;*/
+ }
 
 .otemoto .menu ul #youji{
 	display:none;
@@ -213,18 +221,21 @@ nav .otemoto{
 	}
 	.otemoto .menu ul{
 		background-image:url('/img/common/youji_bg.png');
-		background-position-x: 256px;
+		background-position: 256px top;
 		position:absolute;
 		right:0;
 		margin: 0;
 		width:128px;
+		/*height:288px;*/
+		/*height:auto;*/
 		overflow:hidden;
 		transition-duration: 0.2s;
+		transition-delay:0.2s;
 	}
 	.otemoto .menu ul.clip{
-		background-position: top right;
+		background-position: right 0;
 		width:48px;
-		height:48px;
+		/*height:48px;*/
 		padding: 0;
 		transition-duration: 0.6s;
 	}
@@ -244,8 +255,8 @@ nav .otemoto{
 	
 	.otemoto .menu ul #youji a{
 		background-image:url('/img/common/youji_clip.png');
+		background-position: 256px top;
 		transition-duration: 0.2s;
-		background-position-x: 256px;
 
 	}	
 	.otemoto .menu ul.clip #youji a{
@@ -256,15 +267,24 @@ nav .otemoto{
 		transition-duration: 0.6s;
 	}
 	
+	.otemoto .menu ul.clip li{
+		height:0;
+		transition-duration: 0.2s;
+	}
+	
 	.otemoto .menu li{
 		background-color:white;
 		padding: 0 0.5rem;
 		width:128px;
+		height:auto;
+		transition-duration: 0.2s;
 	}
 
 	.otemoto .menu li, .otemoto .menu a{
 		float:none;
 		padding-bottom: 0.5rem;
+		padding:0;
+		height: 48px;
 	}
 	.otemoto .menu a{
 		background-position: center left;
@@ -273,7 +293,8 @@ nav .otemoto{
 		position: absolute;
 		right: 0;
 		width:96px;
-		height:32px;
+		/*height:32px;*/
+		height:48px;
 		opacity:1;
 		transition-duration: 1.1s;
 	}
@@ -295,6 +316,9 @@ nav .otemoto{
 .otemoto .menu #appli a{
 	background-image:url('/img/common/icon_appli.png');
 }
+.otemoto .menu #link a{
+	background-image:url('/img/common/icon_link.png');
+}
 .otemoto .menu #top a img{
 	background-image:url('/img/common/menu_top.png');
 }
@@ -306,6 +330,9 @@ nav .otemoto{
 }
 .otemoto .menu #appli a img{
 	background-image:url('/img/common/menu_appli.png');
+}
+.otemoto .menu #link a img{
+	background-image:url('/img/common/menu_link.png');
 }
 
 ul.breadcrumb{
@@ -343,9 +370,9 @@ footer{
 	width:100%;
 	margin:0;
 	padding:0;
-	position:absolute;
-	bottom:0px;
-}
+	/*position:absolute;
+	bottom:0px;*/
+	}
 
 footer > p{
 	text-align:center;
@@ -374,7 +401,7 @@ hr{
 	border-style: solid;
 	border-color: #ae8d19 transparent;
 	border-radius: 3rem;
-
+	clear: both;
 }
 
 
@@ -427,6 +454,8 @@ span{
 	display:block;
 	clear:both;
 	border-width: 1px 0 0 0;
+	margin: -1px 0 0 0;
+	padding:0;
 }
 
 .text_red{
@@ -454,12 +483,6 @@ span{
 	font-weight: bold;
 }
 
-@media screen and (max-width:700px){
-	.blackBox{
-		width: 320px;
-		height: 240px;
-	}
-}
 
 
 article.about section p:first-line,article.about section p:last-line{
@@ -574,4 +597,35 @@ article.appli section dd.description{
 
 article.appli section iframe{
 	margin:0 auto;
+}
+
+article.link section dt{
+	text-align:left;
+}
+article.link section dd{
+	margin-bottom: 1rem;
+}
+article.link section dd p{
+	white-space: normal;
+	overflow:hidden;
+	line-height:auto;
+	font-size:0.8rem;
+	line-height: 1rem;
+}
+article.link section dd img{
+	float:left;
+	margin-right: 1rem;
+}
+article.link section dd br{
+	display:none;
+	clear:both;
+}
+@media screen and (max-width:640px){
+	article.link section dd br{
+		display:block;
+	}
+	article.link section dd img{
+		margin-bottom:0.5rem;
+	}
+
 }

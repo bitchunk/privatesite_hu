@@ -3,7 +3,7 @@
 		<h1><img src="/img/common/icon_appli.png" alt="appli_icon"><img src="/img/common/menu_appli.png" alt="application"><span class="hide">about</span></h1>
 		<section>
 			<h2>ＴＯＴＨＫＵＡ</h2>
-			<p class="text_center"><img src="/pictures/tothkua/2014/tothkualogo_bx3.png" width="320" height="160"/></p>
+			<p class="text_center"><img src="/pictures/tothkua/2014/tothkualogo_bx3.png" width="90%" height="auto"/></p>
 			<hr />
 			<dl>
 				<dt>推奨動作環境</dt>
@@ -49,7 +49,7 @@ VRAM：16M以上
 			</dd>
 			<dt>動画</dt>
 			<dd>
-<iframe width="420" height="315" src="https://www.youtube.com/embed/RAyL22Esvy4" frameborder="0" allowfullscreen></iframe>
+<iframe width="90%" height="auto" src="https://www.youtube.com/embed/RAyL22Esvy4" frameborder="0" allowfullscreen></iframe>
 			</dd>
 		</section>
 

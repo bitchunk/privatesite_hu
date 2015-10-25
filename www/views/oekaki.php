@@ -4,6 +4,7 @@
 		<section>
 			<?php template('oekaki_list', array($pictDirs['tothkua'], 'ＴＯＴＨＫＵＡ(とすくあ)')); ?>
 		</section>
+			<hr class="clear" />
 	</article>
+			<hr class="clear" />
 </div>
-<hr class="clear" />

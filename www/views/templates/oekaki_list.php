@@ -10,6 +10,6 @@
 <?php	 foreach($pictYear as $pict){ ?>
 				<li><a href="<?php echo $pict['pict']; ?>"><img src="<?php echo $pict['thumb']; ?>" alt="<?php echo preg_replace('/\.\w+$/', '', mb_convert_encoding(basename(urldecode($pict['thumb'])), 'utf-8', 'sjis-win')); ?>" /></a></li>
 <?php	 } ?>
-			</ul>
 			<hr class="clear" />
+			</ul>
 <?php } ?>

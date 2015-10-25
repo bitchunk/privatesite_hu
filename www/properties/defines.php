@@ -23,6 +23,8 @@ define("WEBHOME", '/');
 define("MUSIC_URI", WEBHOME. 'music/');
 define("PICT_URI", WEBHOME. 'pictures');
 define("THUMB_URI", WEBHOME. 'thumbs');
+define("BANNER_URI", WEBHOME. 'img/banner');
+
 
 define("DEFAULT_ENCODE", "utf-8");
 

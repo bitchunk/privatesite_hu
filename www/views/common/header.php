@@ -69,13 +69,14 @@ foreach(DispatchController::$additionalHeaders as $index=>$tags){
 						<li id="about"><a href="/about"><img src="/img/common/null.png" /></a></li>
 						<li id="oekaki"><a href="/oekaki"><img src="/img/common/null.png" /></a></li>
 						<li id="appli"><a href="/appli"><img src="/img/common/null.png" /></a></li>
+						<li id="link"><a href="/link"><img src="/img/common/null.png" /></a></li>
 					</ul>
 				</div>
 			</div>
 			<hr class="clear" />
-			<ul class="breadcrumb"><?php echo DispatchController::outputBreadCrumb(); ?></ul>
+			<ul class="breadcrumb"><?php echo DispatchController::outputBreadCrumb(); ?><hr class="clear" /></ul>
 			<!-- <div class="donate"><?php if(!empty(self::$donateButton)){echo self::$donateButton;}?></div> -->
-			<hr class="clear" />
+			
 		</nav>
 	</header>
 
