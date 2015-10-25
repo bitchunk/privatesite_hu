@@ -34,7 +34,7 @@ define("PICTURE_IGNORE_FILES_PATH", PICT_PATH. "ignores.csv");
 
 define("HOST_LOCAL", "localhost:58102");
 define("HOST_BETA", "bitchunk.fam.cx");
-define("HOST_PRODUCTION", "hitukuchihu.kemono.jp");
+define("HOST_PRODUCTION", "hitokuchihu.kemono.jp");
 $svh = $_SERVER['HTTP_HOST'];
 if(strstr($svh, HOST_PRODUCTION) != false){
 	define('PROTOCOL_HOST', 'http://'. HOST_PRODUCTION. '/');

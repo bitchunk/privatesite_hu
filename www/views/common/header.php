@@ -74,7 +74,8 @@ foreach(DispatchController::$additionalHeaders as $index=>$tags){
 				</div>
 			</div>
 			<hr class="clear" />
-			<ul class="breadcrumb"><?php echo DispatchController::outputBreadCrumb(); ?><hr class="clear" /></ul>
+			<ul class="breadcrumb"><?php echo DispatchController::outputBreadCrumb(); ?></ul>
+			<hr class="clear" />
 			<!-- <div class="donate"><?php if(!empty(self::$donateButton)){echo self::$donateButton;}?></div> -->
 			
 		</nav>

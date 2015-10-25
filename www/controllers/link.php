@@ -1,4 +1,6 @@
 <?php
+	self::appendBreadCrumb('りんく', 'link');
+	self::setPageTitle('りんく');
 	
 	function makeSiteLink($title = "No Title", $url = "", $banner = "", $description = "")
 	{
