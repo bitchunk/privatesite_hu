@@ -490,7 +490,7 @@ article.about section p:first-line,article.about section p:last-line{
 	white-space: normal;
 }
 
-article.about section .sns_buttons{
+.sns_buttons{
 	text-align: right;
 	white-space: normal;
 }
