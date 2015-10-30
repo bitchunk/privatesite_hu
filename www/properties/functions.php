@@ -7,4 +7,9 @@ function template($tmp_name = null, $args = array()){
 	}
 	require $path;
 }
+
+function isURL($path)
+{
+	return preg_match("/^https?\:\/\/.*/", $path);
+}
 ?>

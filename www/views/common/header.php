@@ -51,9 +51,29 @@
 		s.parentNode.insertBefore(ga, s);
 	})(); 
 </script>
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 <?php
 foreach(DispatchController::$additionalScripts as $index=>$filename){
-	echo '<script src="/js/'. $filename. '"></script>'. "\n";
+	if(!isURL($filename)){
+		echo '<script src="/js/'. $filename. '"></script>'. "\n";
+	}else{
+		echo '<script src="'. $filename. '"></script>'. "\n";
+	}
 }
 foreach(DispatchController::$additionalHeaders as $index=>$tags){
 	echo $tags. "\n";

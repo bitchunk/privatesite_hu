@@ -497,6 +497,7 @@ article.about section p:first-line,article.about section p:last-line{
 article.about section .sns_buttons>div{
 	/*display:inline-block;*/
 }
+
 /**
  * 	oekaki style
  */
@@ -620,7 +621,21 @@ article.link section dd br{
 	display:none;
 	clear:both;
 }
+
+article.link .pickup .pickbody{
+	overflow:scroll;
+	-webkit-overflow-scrolling: touch
+}
+
+article.link .pickup p{
+	font-weight:bold;
+	text-align:right;
+}
+
 @media screen and (max-width:640px){
+	article.link .pickup .pickbody{
+		max-height:200px;
+	}
 	article.link section dd br{
 		display:block;
 	}

@@ -8,6 +8,7 @@ define("THUMB_PATH", ROOTDIR. '/thumbs/');
 define("MUSIC_PATH", ROOTDIR. '/music/');
 define("SOUNDS_PATH", SYSDIR. '/sounds/');
 define('APP_PATH', SYSDIR. '/app/');
+define("PHP_LIBRARY_DIR", SYSDIR. "/lib");
 
 define("MODEL_PATH", SYSDIR. "models/");
 define("CONTROLLER_PATH", SYSDIR. "controllers/");
@@ -15,6 +16,7 @@ define("DATA_PATH", SYSDIR. "datafiles/");
 define("PROP_PATH", SYSDIR. "properties/");
 define("VIEW_PATH", SYSDIR. "views");
 define("TEMPLATE_PATH", VIEW_PATH. "/templates");
+
 
 define("CSS_PATH", SYSDIR. "css/");
 define("JS_BASE_DIR", SYSDIR. "js/");
