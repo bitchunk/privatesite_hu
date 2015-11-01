@@ -67,14 +67,14 @@ HuTop.prototype = {
 		this.sePlayer = new LitroPlayer();
 		this.player = new LitroPlayer();
 		//
-		
-		this.keyControll = new KeyControll();
 
 		this.litroSound.init(CHANNELS_NUM);
 		this.sePlayer.init("se");
 		// this.player.init("edit");
+		this.initSoundEffect();
 
 		//基本キー
+		this.keyControll = new KeyControll();
 		this.initKeys();
 
 		this.loadImages();
@@ -82,7 +82,6 @@ HuTop.prototype = {
 		this.initWords();
 		this.initCanvas();
 		this.initEventFunc();
-		this.initSoundEffect();
 		
 		this.drawCount = 0;
 		this.stackDraw = [];

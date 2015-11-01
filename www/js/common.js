@@ -36,17 +36,29 @@ $(function(){
 			return;
 		}
 		twttr.ready(function(twttr){
-		$('article.link section dd').eq(0).append('<div class="pickup"><p>Pickup</p><div class="pickbody"></div></div>');
+		$('article.link section dd').eq(0).append('<div class="pickup"><p class="blink">▼Pickup</p><div class="pickbody close"></div></div>');
 		elm = $('article.link section dd .pickup .pickbody').get(0);
-			console.log(window.twttr);
 			twttr.widgets.createTweet(
 				ids[0],
 			elm,
 			{
 //				width: 300
+			}).then(function(el){
+				setTimeout(function(){
+					$(el).parents('.pickup').find('.blink').removeClass('blink');
+					$(el).parents('.pickbody').removeClass('close');
+					
+				}, 400);
 			});
 		});
 	});
 	
-	
 });
+function openDlDesc(self){
+	var el = $(self).parents('section').find('dl');
+	if(el.hasClass('close')){
+		el.removeClass('close');
+	}else{
+		el.addClass('close');
+	}
+}
