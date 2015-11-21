@@ -60,18 +60,19 @@ HuTop.prototype = {
 		this.debug = null;
 		this.uiImageName = 'top_sprites';
 		this.testImageName = 'top_x1';
+		this.thanks = null;
 		
-		this.litroSound = new LitroSound();
+		// this.litroSound = new LitroSound();
 		
 		//効果音用
-		this.sePlayer = new LitroPlayer();
-		this.player = new LitroPlayer();
+		// this.sePlayer = new LitroPlayer();
+		// this.player = new LitroPlayer();
 		//
 
-		this.litroSound.init(CHANNELS_NUM);
-		this.sePlayer.init("se");
-		// this.player.init("edit");
-		this.initSoundEffect();
+		// this.litroSound.init(CHANNELS_NUM);
+		// this.sePlayer.init("se");
+		//// this.player.init("edit");
+		// this.initSoundEffect();
 
 		//基本キー
 		this.keyControll = new KeyControll();
@@ -96,6 +97,7 @@ HuTop.prototype = {
 			, sound_id = href.match(/[?|&]+sound_id\=([0-9]+)/)
 			, multi = href.match(/[?|&]+screen\=([0-9]+)/)
 			, buff = href.match(/[?|&]+buff\=([0-9a-zA-Z]+)/)
+			, df = href.match(/[?|&]+df\=([0-9a-zA-Z]+)/)
 			, debug = href.match(/[?|&]+debug\=([0-9]+)/)
 			, self = this;
 			
@@ -128,6 +130,11 @@ HuTop.prototype = {
 					self.setError(data != null ? data : {error_code: 0, message: 'error'});
 				});
 		}
+		if(df != null){
+			if(df[1] == 42){
+				this.thanks = df[1];
+			}
+		}
 		if(debug != null){
 			this.debug = new DebugCell();
 			this.debug.init(scrollByName('sprite'));
@@ -152,7 +159,7 @@ HuTop.prototype = {
 		se.playOnce = true;
 		//[15,16,17]
 		// se.loadSoundPackage('15,16,17', func, errorFunc);
-		se.loadSystemSound('litrokeyboard', func, errorFunc);
+		// se.loadSystemSound('litrokeyboard', func, errorFunc);
 	},
 	
 	initEventFunc: function()
@@ -212,7 +219,7 @@ HuTop.prototype = {
 			, fspr = this.frameSprites
 			, ms = function(id){return makeSprite(img, id);}
 		;
-		
+		this.arigatohu = makeSprite('arigatohu', 0);
 		this.frameSprites = {
 			full: msq('0'),
 			pillar_top: msq('(112 112 113)^3!;116 116 113'),
@@ -279,6 +286,7 @@ HuTop.prototype = {
 		// this.loader.init();
 		var self = this, resorce = loadImages([
 			 [this.uiImageName, 8, 8],
+			 ['arigatohu', 160, 32],
 			 [this.testImageName, 160, 120],
 			 // [this.uiImageName, 16, 16],
 			 // [this.snsImageName, 16, 16],
@@ -420,6 +428,7 @@ HuTop.prototype = {
 	{
 		var bg = scrollByName('bg2')
 			, f = this.frameSprites
+			, t = this.arigatohu 
 			, cto = cellhto
 			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
 			, self = this
@@ -427,7 +436,7 @@ HuTop.prototype = {
 			, rect = makeRect(cto(0), cto(0), cto(20), cto(5))
 		;
 		
-		dsc(f.hitokuchihu, 0, rect.y);
+		dsc(this.thanks == 42 ? t : f.hitokuchihu, 0, rect.y);
 		bg.setRasterHorizon(rect.y, 0, y);
 
 		this.pushStackDraw('title', function(){
@@ -809,7 +818,6 @@ function HuMain()
 };
 
 function main() {
-	litroSoundMain();
 	HuMain();
 	keyStateCheck();
 	requestAnimationFrame(main);
