@@ -450,7 +450,7 @@ HuTop.prototype = {
 			;
 			if(diff > 0){
 				for(i = 0; i < rect.h; i++){
-					x = Math.sin(i + (diff * 0.25)) * diff * 0.15;
+					x = Math.sin((diff - (i  * Math.PI * 0.5)) * 0.15) * diff * 0.15;
 					// x = Math.sin(i + (cnt * DEBUG_RASTER_SIN)) * 240 * DEBUG_RASTER_DIFF;
 					bg.setRasterHorizon(rect.y + i, x, y + i);
 				}
