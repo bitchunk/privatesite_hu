@@ -1,14 +1,18 @@
 <div class="mainbox">
 	<article class="appli">
 		<h1><img src="/img/common/icon_appli.png" alt="appli_icon"><img src="/img/common/menu_appli.png" alt="application"><span class="hide">about</span></h1>
-		<section>
-			<p class="text_center"><a href="" onclick="openDlDesc(this); return false;"><img src="/pictures/tothkua/2014/tothkualogo_bx3.png" width="90%" height="auto"/></a></p>
-			<h2><a href="" onclick="openDlDesc(this); return false;">ＴＯＴＨＫＵＡ</a></h2>
+		<section itemscope itemtype="http://schema.org/SoftwareApplication">
+			<p class="text_center"><a href="" onclick="openDlDesc(this); return false;"><img itemprop="image" src="/pictures/tothkua/2014/tothkualogo_bx3.png" width="90%" height="auto"/></a></p>
+			<h2><a href="" onclick="openDlDesc(this); return false;"><span itemprop="name">ＴＯＴＨＫＵＡ</span></a></h2>
 			<hr />
 			<dl class="close">
+				<dt>カテゴリ</dt>
+				<dd itemprop="applicationCategory">
+2Dアクション
+				</dd>
 				<dt>推奨動作環境</dt>
-				<dd class="">
-OS：windows2000～
+				<dd itemprop="requirements"class="">
+OS：<span itemprop="operatingSystem">Windows</span>2000～
 CPU：Pentium3以上
 VRAM：16M以上
 メモリ：128MByte以上
@@ -44,31 +48,35 @@ VRAM：16M以上
 			</dd>
 			<dt>ダウンロード</dt>
 			<dd class="" >
-<a href="http://www.vector.co.jp/soft/winnt/game/se475716.html" >ベクターソフトライブラリ</a>
+<a itemprop="downloadUrl" href="http://www.vector.co.jp/soft/winnt/game/se475716.html" target="_blank">ベクターソフトライブラリ</a>
 			</dd>
 			<dt>動画</dt>
-			<dd>
+			<dd itemprop="screenshot">
 <iframe width="420" height="315" src="https://www.youtube.com/embed/RAyL22Esvy4" frameborder="0" allowfullscreen></iframe>
 			</dd>
 			<p class="text_center"><a href="" onclick="openDlDesc(this); return false;">▲<br/><img src="/img/common/ohu_chelam32.png" /></a></p>
 			</dl>
 		</section>
 		<hr class="clear" />
-		<section>
-			<p class="text_center"><a href="" onclick="openDlDesc(this); return false;"><img src="/pictures/litrokeyboard/2015/webltkb_x3.png" width="90%" height="auto"/></a></p>
-			<h2><a href="" onclick="openDlDesc(this); return false;">ＬｉｔｒｏＫｅｙｂｏａｒｄ</a></h2>
+		<section itemscope itemtype="http://schema.org/SoftwareApplication">
+			<p class="text_center"><a href="" onclick="openDlDesc(this); return false;"><img itemprop="image" src="/pictures/litrokeyboard/2015/webltkb_x3.png" width="90%" height="auto"/></a></p>
+			<h2><a href="" onclick="openDlDesc(this); return false;"><span itemprop="name">ＬｉｔｒｏＫｅｙｂｏａｒｄ</span></a></h2>
 			<hr />
-			<dl class="close">
+				<dt>カテゴリ</dt>
+				<dd itemprop="applicationCategory">
+DTM(チップチューン)
+				</dd>
+				<dl class="close">
 				<dt>推奨動作環境</dt>
-				<dd class="">
+				<dd itemprop="requirements" class="">
 【WEBブラウザ版】
-OS：windowsVista以上／MacOSX10.8以上／Linux?
+OS：<span itemprop="operatingSystem">Windows</span>Vista以上／<span itemprop="operatingSystem">MacOSX</span>10.8以上／Linux?
 VRAM：OSが快適に動く程度
 メモリ：OSが快適に動く程度
 ブラウザ：Chrome、FireFox、Safari(最新バージョンが望ましい)
 
 【PC版】
-OS：windows2000～
+OS：<span itemprop="operatingSystem">Windows</span>2000～
 CPU：Pentium3以上
 VRAM：16M以上
 メモリ：128MByte以上
@@ -93,7 +101,7 @@ VRAM：16M以上
 				</dd>
 				<dt>URL【ブラウザ版】</dt>
 				<dd class="" >
-<a href="https://ltsnd.bitchunk.net/keyboard" >LitroKeyboard web</a>
+<a itemprop="url" href="https://ltsnd.bitchunk.net/keyboard" target="_blank" >LitroKeyboard web</a>
 (スマホでは簡易プレイヤーに飛びます)
 				</dd>
 				<dt>動画</dt>
@@ -103,10 +111,10 @@ VRAM：16M以上
 				<hr />
 				<dt>ダウンロード【PC版】</dt>
 				<dd class="" >
-<a href="http://www.vector.co.jp/soft/winnt/art/se437614.html" >ベクターソフトライブラリ</a>
+<a itemprop="downloadUrl" href="http://www.vector.co.jp/soft/winnt/art/se437614.html" target="_blank" >ベクターソフトライブラリ</a>
 				</dd>
 				<dt>動画</dt>
-				<dd>
+				<dd itemprop="screenshot">
 <iframe width="420" height="315" src="https://www.youtube.com/embed/yp7AhxGOqGI" frameborder="0" allowfullscreen></iframe>
 				</dd>
 				<p class="text_center"><a href="" onclick="openDlDesc(this); return false;">▲<br/><img src="/img/common/ohu_comodo32.png" /></a></p>

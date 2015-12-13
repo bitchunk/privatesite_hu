@@ -12,12 +12,10 @@
 	// );
 	$dir = glob(THUMB_PATH. '*', GLOB_ONLYDIR);
 	$pictDirs = array();
-	// foreach($dir as $id => $name){
-	// $info = array();
-	// $info['id'] = $id;
-	// $info['title'] = $name;
-	// $dirs[] = $info;
-	// }
+	// $reg = "/(.*)(?:\.([^.]+$))/";
+	$reg = "/\.([^.]+$)/";
+	$blace = '/'. '{*.jpg,*.jpeg,*.gif,*.png}';
+	
 	foreach($dir as $category_path){
 		$category = basename($category_path);
 		if(isset($ignore[$category]) && $ignore[$category] === true){
@@ -33,24 +31,34 @@
 			}
 			$pictDirs[$category][$year. ''] = array();
 			// var_dump($pictDirs);
-			$pictFiles = glob($year_path. '/'. '{*.jpg,*.jpeg,*.gif,*.png}', GLOB_BRACE);
+			$pictFiles = glob($year_path. $blace, GLOB_BRACE);
 			foreach($pictFiles as $pict_path){
-				$pict = basename($pict_path);
-				if(isset($ignore[$category][$year]) && $ignore[$category][$year] === $pict){
+				$thumb_ext = basename($pict_path);
+				
+				if(isset($ignore[$category][$year]) && $ignore[$category][$year] === $thumb_ext){
 					continue;
 				}
+				//thmubはjpgでpictはpngだったり
+				$pict_ext = $thumb_ext;
+				$pPath = PICT_PATH. '/'. $category. '/'. $year. '/'. $pict_ext;
+				if(file_exists($pPath) === false){
+					$e = glob(preg_replace($reg, '', $pPath). '{.png}', GLOB_BRACE);
+					$pict_ext =  basename($e[0]);
+				}
+				
 				$pictDirs[$category][$year][] = array(
-					'pict' => PICT_URI. '/'. $category. '/'. $year. '/'. urlencode($pict)
-				,	'thumb' => THUMB_URI. '/'. $category. '/'. $year. '/'. urlencode($pict)
+					'thumb' => THUMB_URI. '/'. $category. '/'. $year. '/'. urlencode($thumb_ext),
+					'pict' => PICT_URI. '/'. $category. '/'. $year. '/'. urlencode($pict_ext),
 				);
 				$filesTime[] = filemtime($pict_path);
 			}
-			array_multisort($pictDirs[$category][$year], SORT_ASC, $filesTime);
+			array_multisort($filesTime, SORT_DESC, $pictDirs[$category][$year]);
 		}
 		krsort($pictDirs[$category]);
 		
 		// var_dump($pictDirs['tothkua']);
 	}
+
 /*
 ﾃﾚｯﾃﾚｰﾚｰ ﾃﾚｯﾃﾚｰﾚｰ
 ￣￣￣￣￣￣￣￣￣￣￣￣

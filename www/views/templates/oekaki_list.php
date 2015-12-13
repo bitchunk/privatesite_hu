@@ -8,7 +8,7 @@
 			<hr class="clear"/>
 			<ul>
 <?php	 foreach($pictYear as $pict){ ?>
-				<li><a href="<?php echo $pict['pict']; ?>"><img src="<?php echo $pict['thumb']; ?>" alt="<?php echo preg_replace('/\.\w+$/', '', mb_convert_encoding(basename(urldecode($pict['thumb'])), 'utf-8', 'sjis-win')); ?>" /></a></li>
+				<li><a href="<?php echo $pict['pict']; ?>"><img class="picview" src="<?php echo $pict['thumb']; ?>" alt="<?php echo preg_replace('/\.\w+$/', '', mb_convert_encoding(basename(urldecode($pict['thumb'])), 'utf-8', 'sjis-win')); ?>" /></a></li>
 <?php	 } ?>
 			<hr class="clear" />
 			</ul>

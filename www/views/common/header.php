@@ -30,6 +30,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/js/lib/jquery-2.0.0.min.js"></script>
 <script src="/js/lib/jquery.easing.1.3.js"></script>
+<script src="/js/litrosound/Litrosound.js"></script>
 <script src="/js/common.js"></script>
 
 <script src="https://apis.google.com/js/platform.js" async defer>
@@ -99,7 +100,7 @@ foreach(DispatchController::$additionalHeaders as $index=>$tags){
 				</div>
 			</div>
 			<hr class="clear" />
-			<ul class="breadcrumb"><?php echo DispatchController::outputBreadCrumb(); ?></ul>
+			<?php echo DispatchController::outputBreadCrumb(); ?>
 			<hr class="clear" />
 			<!-- <div class="donate"><?php if(!empty(self::$donateButton)){echo self::$donateButton;}?></div> -->
 			

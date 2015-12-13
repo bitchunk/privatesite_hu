@@ -91,16 +91,18 @@ class DispatchController {
 	}
 	
 	static function outputBreadCrumb(){
-		$str = "";
+		$str = '<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">';
 		foreach(self::$breadcrumb as $index=>$row){
-			$str .= '<li>';
+			$str .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">';
 			if($index == count(self::$breadcrumb) - 1){
-				$str .= '<span>'. $row['name']. '</span>';
+				$str .= '<span itemprop="name">'. $row['name']. '</span>';
 			}else{
-				$str .= '<a href="'. $row['link']. '" ><span>'. $row['name']. '</span></a>';
+				$str .= '<a itemprop="item" href="'. $row['link']. '" ><span itemprop="name">'. $row['name']. '</span></a>';
 			}
+			$str .= '<meta itemprop="position" content="'. ($index + 1). '" />';
 			$str .= '</li>';
 		}
+		'</ul>';
 		return $str;
 	}
 	

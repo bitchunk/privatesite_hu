@@ -10,7 +10,7 @@
 	self::appendBreadCrumb('りんく', 'link');
 	self::setPageTitle('りんく');
 	//TODO ピックアップ＆関連ツイート表示機能
-	function makeSiteLink($title = "No Title", $url = "", $banner = "", $description = "")
+	function makeSiteLink($title = "No Title", $url = "", $banner = "", $description = "", $type = "")
 	{
 		$banner = !empty($banner) ? $banner : 'nobanner.png';
 		$site = array();
@@ -19,7 +19,7 @@
 		$site['banner'] = preg_match("/^https?\:\/\/.*/", $banner) ? $banner : BANNER_URI. '/'. $banner;
 		$site['description'] = $description;
 		
-		
+		$site['analytics'] = "_gaq.push(['_trackEvent', 'exitlink', '{$url}', '{$type}']);";
 		return $site;
 	}
 	
@@ -29,20 +29,22 @@
 	self::appendJS('lib/oauth-1.0a.js');
 	$linkList = array();
 	$artists = array();
-	$artists[] = makeSiteLink('月詠龍', 'http://karasu-ryu.jp/', 'tsukuyomiryu.jpg', '【イラスト】【読み物】【ブログ】');
-	$artists[] = makeSiteLink('シロデココ', 'http://dekoco.net/', 'shirodekoko.png', '【イラスト】【ブログ】');
-	// $artists[] = makeSiteLink('シロデココ', 'http://dekoco.net/', '', '【イラスト】【ブログ】');
-	$artists[] = makeSiteLink('lintw.net', 'http://lintw.net/', 'lintw.gif', '【イラスト】');
-	$artists[] = makeSiteLink('アイス＆クリフ', 'http://nkymtky.web.fc2.com/icecliff/index.htm', 'icecliff.jpg', '【ゲーム】');
-	$artists[] = makeSiteLink('シーレの物置場', 'http://www.geocities.jp/recpix/', 'crepix.png', '【ゲーム】【イラスト】');
-	$artists[] = makeSiteLink('ちょこざいな千鳥足ライフ', 'http://nostalgicsky.blog17.fc2.com/', 'cchidoriashil.png', '【ブログ】');
-	$artists[] = makeSiteLink('らっこ屋', 'http://namori1229.tumblr.com/', 'rakkoya.jpg', '【イラスト】');
+	$type = 'artists';
+	$artists[] = makeSiteLink('月詠龍', 'http://karasu-ryu.jp/', 'tsukuyomiryu.jpg', '【イラスト】【読み物】【ブログ】', $type);
+	$artists[] = makeSiteLink('シロデココ', 'http://dekoco.net/', 'shirodekoko.png', '【イラスト】【ブログ】', $type);
+	// $artists[] = makeSiteLink('シロデココ', 'http://dekoco.net/', '', '【イラスト】【ブログ】', $type);
+	$artists[] = makeSiteLink('lintw.net', 'http://lintw.net/', 'lintw.gif', '【イラスト】', $type);
+	$artists[] = makeSiteLink('アイス＆クリフ', 'http://nkymtky.web.fc2.com/icecliff/index.htm', 'icecliff.jpg', '【ゲーム】', $type);
+	$artists[] = makeSiteLink('シーレの物置場', 'http://www.geocities.jp/recpix/', 'crepix.png', '【ゲーム】【イラスト】', $type);
+	$artists[] = makeSiteLink('ちょこざいな千鳥足ライフ', 'http://nostalgicsky.blog17.fc2.com/', 'cchidoriashil.png', '【ブログ】', $type);
+	$artists[] = makeSiteLink('らっこ屋', 'http://namori1229.tumblr.com/', 'rakkoya.jpg', '【イラスト】', $type);
 
+	$type = 'tools';
 	$tools = array();
-	$tools[] = makeSiteLink('EDGE2', 'http://takabosoft.com/edge2', 'http://takabosoft.com/wp-content/themes/takabosoft/edge2/banner00.png', '【ツール】');
-	$tools[] = makeSiteLink('けものサーバ', 'http://kemono.cc/', 'kemoserver.gif', '【ホームページスペース】【検索】');
-	$tools[] = makeSiteLink('けもサーチ', 'http://www.kemonosearch.com/', 'kemobar13.gif', '【検索】');
-	$tools[] = makeSiteLink('クリエイター×コレクション', 'http://www.kurikore.com/', 'creatorcollection.png', '【検索】');
+	$tools[] = makeSiteLink('EDGE2', 'http://takabosoft.com/edge2', 'http://takabosoft.com/wp-content/themes/takabosoft/edge2/banner00.png', '【ツール】', $type);
+	$tools[] = makeSiteLink('けものサーバ', 'http://kemono.cc/', 'kemoserver.gif', '【ホームページスペース】【検索】', $type);
+	$tools[] = makeSiteLink('けもサーチ', 'http://www.kemonosearch.com/', 'kemobar13.gif', '【検索】', $type);
+	$tools[] = makeSiteLink('クリエイター×コレクション', 'http://www.kurikore.com/', 'creatorcollection.png', '【検索】', $type);
 	
 	list($f, $i) = explode(" ", microtime());
 	srand(((float)$f * 1000000) + $i);
