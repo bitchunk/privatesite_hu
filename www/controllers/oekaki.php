@@ -14,8 +14,11 @@
 	$pictDirs = array();
 	// $reg = "/(.*)(?:\.([^.]+$))/";
 	$reg = "/\.([^.]+$)/";
-	$blace = '/'. '{*.jpg,*.jpeg,*.gif,*.png}';
-	
+	// $blace = '/'. '{*.jpg,*.jpeg,*.gif,*.png}';
+	$blace = '{*.jpg,*.jpeg,*.gif,*.png}';
+	if(defined('SERVER_FILENAME_ENCODE')){
+		mb_internal_encoding(SERVER_FILENAME_ENCODE);
+	}
 	foreach($dir as $category_path){
 		$category = basename($category_path);
 		if(isset($ignore[$category]) && $ignore[$category] === true){
@@ -31,9 +34,11 @@
 			}
 			$pictDirs[$category][$year. ''] = array();
 			// var_dump($pictDirs);
-			$pictFiles = glob($year_path. $blace, GLOB_BRACE);
+			$pictFiles = glob($year_path.  '/'. $blace, GLOB_BRACE);
 			foreach($pictFiles as $pict_path){
-				$thumb_ext = basename($pict_path);
+				// $thumb_ext = defined('SERVER_FILENAME_ENCODE') ? basename(mb_convert_encoding($pict_path, DEFAULT_ENCODE, SERVER_FILENAME_ENCODE)) : basename($pict_path);
+				// $thumb_ext = basename($pict_path);
+				$thumb_ext = substr(strrchr("/$pict_path",'/'),1);
 				
 				if(isset($ignore[$category][$year]) && $ignore[$category][$year] === $thumb_ext){
 					continue;
@@ -42,7 +47,9 @@
 				$pict_ext = $thumb_ext;
 				$pPath = PICT_PATH. '/'. $category. '/'. $year. '/'. $pict_ext;
 				if(file_exists($pPath) === false){
-					$e = glob(preg_replace($reg, '', $pPath). '{.png}', GLOB_BRACE);
+					// var_dump($pict_path, mb_detect_encoding($pict_path, "ASCII,JIS,UTF-8,CP51932,SJIS-win", true));
+					// var_dump($pict_path, $pict_ext, $pPath);
+					$e = glob(preg_replace($reg, '', $pPath). $blace, GLOB_BRACE);
 					$pict_ext =  basename($e[0]);
 				}
 				

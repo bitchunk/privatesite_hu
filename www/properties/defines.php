@@ -40,6 +40,9 @@ define("HOST_PRODUCTION", "hitokuchihu.kemono.jp");
 $svh = $_SERVER['HTTP_HOST'];
 if(strstr($svh, HOST_PRODUCTION) != false){
 	define('PROTOCOL_HOST', 'http://'. HOST_PRODUCTION. '/');
+	// define('SERVER_ENCODE', 'ISO-8859-1');
+	define('SERVER_FILENAME_ENCODE', 'SJIS-win');
+	// ini_set('display_errors', 1);
 }else if($svh == HOST_BETA){
 	// define('PROTOCOL_HOST', 'http://'. HOST_BETA. '/');
 	// ini_set('display_errors', 1);
@@ -50,4 +53,10 @@ if(strstr($svh, HOST_PRODUCTION) != false){
 
 define("SITE_NAME", "ひとくちふ");
 define("SITE_AUTHER", "しふたろう");
+
+date_default_timezone_set('Asia/Tokyo');
+mb_language('uni');
+mb_internal_encoding("utf-8");
+mb_http_input("auto");
+mb_http_output("utf-8");
 

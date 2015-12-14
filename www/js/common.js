@@ -70,6 +70,11 @@ $(function(){
 LTSND('shiftal_on', 'HU', function(ltsnd){
 	// console.log(ltsnd);
 	ltsnd.se.eventPlay('.menu li', 'mouseover', 0);
+	ltsnd.se.eventPlay('.oekaki li:nth-child(4n + 1)', 'mouseover', 1);
+	ltsnd.se.eventPlay('.oekaki li:nth-child(4n + 2)', 'mouseover', 2);
+	ltsnd.se.eventPlay('.oekaki li:nth-child(4n + 3)', 'mouseover', 3);
+	ltsnd.se.eventPlay('.oekaki li:nth-child(4n + 4)', 'mouseover', 4);
+	ltsnd.se.eventPlay('.oekaki li img', 'click', 5);
 });
 
 function makeBG(mainScroll, multi, onload)
@@ -152,7 +157,7 @@ function pictView(src){
 					for(i = 0; i < dh; i++){
 						distance = duration / Math.exp(( scrollCount) * 0.20) * (dw / duration);
 						ofs = Math.cos((i * Math.PI * 1)) * distance;
-						ctx.drawImage(imgScroll.cvs, 0, i / rw, imgScroll.cvs.width, 1 / rw, dx + ofs, i, dw, 1);
+						ctx.drawImage(imgScroll.cvs, 0, i / rw, imgScroll.cvs.width, 1 / rw, dx + ofs, dy + i, dw, 1);
 					}
 				}else{
 					ctx.drawImage(imgScroll.cvs, dx, dy, dw, dh);
