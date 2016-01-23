@@ -62,11 +62,11 @@ VRAM：16M以上
 			<p class="text_center"><a href="" onclick="openDlDesc(this); return false;"><img itemprop="image" src="/pictures/litrokeyboard/2015/webltkb_x3.png" width="90%" height="auto"/></a></p>
 			<h2><a href="" onclick="openDlDesc(this); return false;"><span itemprop="name">ＬｉｔｒｏＫｅｙｂｏａｒｄ</span></a></h2>
 			<hr />
+			<dl class="close">
 				<dt>カテゴリ</dt>
 				<dd itemprop="applicationCategory">
-DTM(チップチューン)
+DTM(チップチューン・シーケンサ)
 				</dd>
-				<dl class="close">
 				<dt>推奨動作環境</dt>
 				<dd itemprop="requirements" class="">
 【WEBブラウザ版】
@@ -96,7 +96,7 @@ VRAM：16M以上
 				<dt>説明</dt>
 				<dd class="description" >
 レトロでリトルなキーボード！
-8bitゲーム機でなるような音のDTMです。
+8bitゲーム機でなるような音のDTM(チップチューン・シーケンサ)です。
 ブラウザ版で作成したデータはtwitterのタイムラインで共有・再生することができます。
 				</dd>
 				<dt>URL【ブラウザ版】</dt>
@@ -117,6 +117,15 @@ VRAM：16M以上
 				<dd itemprop="screenshot">
 <iframe width="420" height="315" src="https://www.youtube.com/embed/yp7AhxGOqGI" frameborder="0" allowfullscreen></iframe>
 				</dd>
+				<hr />
+				<dt>関連リンク</dt>
+				<dd>
+					<a href="https://github.com/oshiimizunohuta/litrosound/releases/tag/v0.11.10">GitHub ソースコード(最新安定版v0.11.10)</a>
+					<p>音をサイトに組み込むには<strong>LitroSound.js</strong>が必要です。</p>
+					
+<a class="twitter-timeline" href="https://twitter.com/LitroSound" data-widget-id="690812876336934913">@LitroSoundさんのツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 				<p class="text_center"><a href="" onclick="openDlDesc(this); return false;">▲<br/><img src="/img/common/ohu_comodo32.png" /></a></p>
 			</dl>
 		</section>

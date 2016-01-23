@@ -98,7 +98,7 @@ function makeBG(mainScroll, multi, onload)
 		onload();
 	};
 	img.src = './img/resource/oekaki_back.png';
-	return {cvs: cvs, ctx: ctx};
+	return {cvs: cvs, ctx: ctx, img:img};
 }
 
 function pictView(src){
@@ -149,13 +149,24 @@ function pictView(src){
 				, w = bg.cvs.width, h = bg.cvs.height, i
 				, ofs, duration = 32, distance
 				;
+				if($('body canvas').size() == 0){
+					bg.cvs = null;
+					bg.ctx = null;
+					bg.img = null;
+					ctx = null;
+					cvs = null;
+					img = null;
+					return;
+				};
+				
+				
 				ctx.drawImage(bg.cvs, x, y);
 				ctx.drawImage(bg.cvs, x - w, y);
 				ctx.drawImage(bg.cvs, x - w, y - h);
 				ctx.drawImage(bg.cvs, x, y - h);
 				if(scrollCount < duration){
 					for(i = 0; i < dh; i++){
-						distance = duration / Math.exp(( scrollCount) * 0.20) * (dw / duration);
+						distance = duration / Math.exp((scrollCount) * 0.20) * (dw / duration);
 						ofs = Math.cos((i * Math.PI * 1)) * distance;
 						ctx.drawImage(imgScroll.cvs, 0, i / rw, imgScroll.cvs.width, 1 / rw, dx + ofs, dy + i, dw, 1);
 					}
