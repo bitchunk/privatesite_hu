@@ -120,7 +120,7 @@ VRAM：16M以上
 				<hr />
 				<dt>関連リンク</dt>
 				<dd>
-					<a href="https://github.com/oshiimizunohuta/litrosound/releases/tag/v0.11.10">GitHub ソースコード(最新安定版v0.11.10)</a>
+					<a href="https://github.com/oshiimizunohuta/litrosound/releases/tag/v0.11.10" target="_blank">GitHub ソースコード(最新安定版v0.11.10)</a>
 					<p>音をサイトに組み込むには<strong>LitroSound.js</strong>が必要です。</p>
 					
 <a class="twitter-timeline" href="https://twitter.com/LitroSound" data-widget-id="690812876336934913">@LitroSoundさんのツイート</a>

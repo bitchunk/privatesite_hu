@@ -7,6 +7,9 @@
 		<section>
 			<?php template('oekaki_list', array($pictDirs['pitmap'], 'ＰＩＴＭＡＰ')); ?>
 		</section>
+		<section>
+			<?php template('oekaki_list', array($pictDirs['other'], 'そのほか')); ?>
+		</section>
 	</article>
 	<hr class="clear" />
 </div>
