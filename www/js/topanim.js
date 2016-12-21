@@ -34,9 +34,14 @@ var DISPLAY_HEIGHT = 120;
 var CHIPCELL_SIZE = 8;
 var UI_SCREEN_ID = 'screen';
 var layerScroll = null;
-var COLOR_BG = [252, 224, 168, 255];
+//var COLOR_BG = [252, 224, 168, 255];
+//var COLOR_BG = [104, 136, 252, 255]; //
+var COLOR_BG = [68, 40, 188, 255];
 var COLOR_STEP = [184, 248, 216, 255];
 var COLOR_TIME = [248, 216, 120, 255];
+
+var COLOR_GLAY = [188, 188, 188, 255];
+var COLOR_SHADOW = [124, 124, 124, 255];
 
 var COLOR_NOTEFACE = [184, 248, 184, 255];
 var COLOR_NOTEPRINT = [0, 168, 0, 255];
@@ -58,9 +63,10 @@ HuTop.prototype = {
 	init : function() {
 		var self = this;
 		this.debug = null;
-		this.uiImageName = 'top_sprites';
+		this.uiImageName = 'top_sprites_xmas';
 		this.testImageName = 'top_x1';
 		this.thanks = null;
+		this.xmasLamps = [];
 		
 		// this.litroSound = new LitroSound();
 		
@@ -78,11 +84,22 @@ HuTop.prototype = {
 		this.keyControll = new KeyControll();
 		this.initKeys();
 
-		this.loadImages();
-		this.initViewMode();
-		this.initWords();
-		this.initCanvas();
-		this.initEventFunc();
+		this.loadImages(function(){
+			self.imageLoaded = true;
+			self.initCanvas();
+			self.initFrameSprites();
+			self.initViewMode();
+			self.initWords();
+			self.initSprite();
+			self.initEventFunc();
+			if(self.debug != null){
+				self.debug = new DebugCell();
+				self.debug.init(scrollByName('sprite'));
+			}
+			self.drawbgBatch();
+			requestAnimationFrame(main);
+
+		});
 		
 		this.drawCount = 0;
 		this.stackDraw = [];
@@ -136,16 +153,9 @@ HuTop.prototype = {
 			}
 		}
 		if(debug != null){
-			this.debug = new DebugCell();
-			this.debug.init(scrollByName('sprite'));
-			// this.debugCell = true;
-			// window.document.getElementById('screen').addEventListener('mousemove', function(e){
-					// var bounds = this.getBoundingClientRect()
-						// ;
-					// self.debugCellPos.x = (((e.clientX - bounds.left) / VIEWMULTI) / cellhto(1)) | 0;
-					// self.debugCellPos.y = (((e.clientY - bounds.top) / VIEWMULTI) / cellhto(1)) | 0;
-			// }, false);
-			
+			this.debug = true;
+//			this.debug = new DebugCell();
+//			this.debug.init(scrollByName('sprite'));
 		}
 		return;
 	},
@@ -178,15 +188,15 @@ HuTop.prototype = {
 	
 	initCanvas: function()
 	{
-		makeCanvasScroll();
+//		makeCanvasScroll();
 		
-		var bg1 = makeScroll('bg1', false)
-			, bg2 = makeScroll('bg2', false)
-			, bg3 = makeScroll('bg3', false)
-			, bg4 = makeScroll('bg4', false)
-			, spr = makeScroll('sprite', false)
-			, view = makeScroll('view', false)
-			, scr = makeScroll(UI_SCREEN_ID, true)
+		var bg1 = makeCanvasScroll('bg1')
+			, bg2 = makeCanvasScroll('bg2')
+			, bg3 = makeCanvasScroll('bg3')
+			, bg4 = makeCanvasScroll('bg4')
+			, spr = makeCanvasScroll('sprite')
+			, view = makeCanvasScroll('view')
+			, scr = makeCanvasScroll(UI_SCREEN_ID)
 			;
 		scr.clear(COLOR_BLACK);
 		view.clear(COLOR_BLACK);
@@ -207,7 +217,7 @@ HuTop.prototype = {
 		// this.waveSprite = makePoint(this.uiImageName, 1);
 		
 		this.word.setFontSize('8px');
-		this.cellCursorSprite = makeSprite(this.word.imageName, this.cellCursorSprite);
+//		this.cellCursorSprite = makeSprite(this.word.imageName, this.cellCursorSprite);
 
 	},
 	
@@ -218,6 +228,7 @@ HuTop.prototype = {
 			, msq = function(query){return makeSpriteQuery(img, query);}
 			, fspr = this.frameSprites
 			, ms = function(id){return makeSprite(img, id);}
+			, w
 		;
 		this.arigatohu = makeSprite('arigatohu', 0);
 		this.frameSprites = {
@@ -259,7 +270,29 @@ HuTop.prototype = {
 			comod_bottom_01: msq('7+3:3+1'),
 			comod_bottom_02: msq('10+3:3+1'),
 			
+			tree_full: msq('((38*4)^2 14+2:12+2 (38*4)^2!;38*3 13+2:14+1 13+2:14+1|fh 38*3;(38*2 13+3:14+1 13+3:14+1|fh 38*2)^3!;38*3 238 239|fh 239 238|fh 38*3;(38 13+3:14+1 239 239|fh 13+3:14+1|fh 38)^2!;38*2 238 239|fh*2 239*2 238|fh 38*2;13+3:14+1 239*2 239|fh*2 13+3:14+1|fh;(38*3 13+2:15+1 13+2:15+1|fh 38*3)^2)'),
+			lamp_code: msq('(((12+2:13+1|fh 12+2:13+1)*5;(255*20)^3)^3!;(12+2:13+1|fh 12+2:13+1)*5)'),
+			pillar_xmas: msq('(253 253|fh)^10'),
+			pillar_b_xmas: msq('(253 253|fh)^10'),
+			lamp: [
+				msq('204'),msq('204'), msq('204'),msq('204'), msq('204'),msq('204'), msq('204'),msq('204'),
+				msq('204'),
+			]
+			
 		};
+		
+		this.frameSprites.pillar_b_xmas.setSwapColor([130, 26, 0, 255], [228, 92, 16, 255]);
+		w = this.frameSprites.lamp;
+		w[0].setSwapColor([[164, 228, 252, 255], [60, 188, 252, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[1].setSwapColor([COLOR_WHITE, [164, 228, 252, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[2].setSwapColor([[248, 184, 248, 255], [248, 120, 248, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[3].setSwapColor([COLOR_WHITE, [248, 184, 248, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[4].setSwapColor([[252, 224, 168, 255], [252, 160, 68, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[5].setSwapColor([COLOR_WHITE, [252, 224, 168, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[6].setSwapColor([[184, 248, 184, 255], [88, 216, 84, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		w[7].setSwapColor([COLOR_WHITE, [184, 248, 184, 255]], [COLOR_SHADOW, COLOR_GLAY]);
+		
+		
 	},
 	
 	//リピートchipchunk(Array, Array)
@@ -281,7 +314,7 @@ HuTop.prototype = {
 		word.setMarkAlign(form.malign);
 	},
 		
-	loadImages: function()
+	loadImages: function(func)
 	{
 		// this.loader.init();
 		var self = this, resorce = loadImages([
@@ -292,11 +325,7 @@ HuTop.prototype = {
 			 // [this.snsImageName, 16, 16],
 			 // ['font4v6p', 4, 6],
 			 ['font8p', 8, 8]], function(){
-			self.imageLoaded = true;
-			self.initSprite();
-			self.initFrameSprites();
-			self.drawbgBatch();
-			requestAnimationFrame(main);
+			 func();
 		});
 
 	},
@@ -347,13 +376,13 @@ HuTop.prototype = {
 	drawbgBatch: function()
 	{
 		this.drawBg();
+		this.drawLamp();
 		this.drawTitle();
 		this.drawConveyor();
 		this.drawHuStream();
 		this.drawCutCase();
 		this.drawTektMogmog();
 		this.drawComodKuru();
-		
 	},
 	
 	drawBg: function()
@@ -365,13 +394,22 @@ HuTop.prototype = {
 		;
 		bg1.clear(COLOR_BG);
 		dsc(f.searface, 0, cto(14));
-		dsc(f.pillar_top, cto(4), 0);
-		dsc(f.pillar_top, cto(12), 0);
-		dsc(f.pillar_bottom, cto(1), cto(11));
-		dsc(f.pillar_bottom, cto(9), cto(11));
-		dsc(f.pillar_bottom, cto(17), cto(11));
+//		dsc(f.pillar_top, cto(4), 0);
+//		dsc(f.pillar_top, cto(12), 0);
+
+		dsc(f.tree_full, cto(0), cto(1));
 		
-		dsc(f.titleboard, 0, cto(4));
+		dsc(f.pillar_xmas, cto(9), cto(4));
+		dsc(f.pillar_xmas, cto(14), cto(4));
+		dsc(f.pillar_b_xmas, cto(12), cto(4));
+		dsc(f.pillar_b_xmas, cto(17), cto(4));
+		
+
+//		dsc(f.pillar_bottom, cto(1), cto(11));
+//		dsc(f.pillar_bottom, cto(9), cto(11));
+//		dsc(f.pillar_bottom, cto(17), cto(11));
+		
+//		dsc(f.titleboard, 0, cto(4));
 		// dsc(f.hitokuchihu, cto(0), cto(6));
 		dsc(f.copyright, cto(12), cto(10));
 		
@@ -408,6 +446,64 @@ HuTop.prototype = {
 		// dsc(f.conveyor, cto(11), cto(13));
 	},
 	
+	drawLamp:function()
+	{
+		var bg = scrollByName('bg1')
+			, f = this.frameSprites
+			, cto = cellhto
+			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
+			, self = this
+			, i, j, crect = makeRect(0, 0, 20, 4)
+			, num, typeNum = 4, offNum = 8
+			, d = new Date()
+			, lamp
+		;
+		dsc(f.lamp_code, cto(0), cto(0));
+		this.xmasLamps = [];
+		
+		for(j = 0; j < crect.h; j++){
+			for(i = 0; i < crect.w; i++){
+//				num = (i + (j * typeNum)) % typeNum;
+				if((i + 1) % 4 == 0 || i % 4 == 0){
+					continue;
+				}
+				lamp = new LampBlight();
+				lamp.init(cto(i), cto(j * crect.h), d.getTime());
+				this.xmasLamps.push(lamp);
+				
+				dsc(f.lamp[8], cto(i), cto(j * crect.h));
+			}
+		}
+		
+		this.pushStackDraw('lamp', function(){
+			var cnt = self.drawCount
+				, hDuration = 90
+				, duration = 180
+				, blight //0~2
+				, lamp = self.xmasLamps
+				, n, m
+			;
+			if(cnt % 3 == 0){
+				m = cnt % lamp.length;
+				n = m;
+				lamp[n].incLampType();
+				lamp[n].resetPow(180);
+				n = (((n + cnt) / 7) | 0) % lamp.length;
+				lamp[n].resetPow(180 + n + n);
+				n = (n + n) % lamp.length;
+				lamp[n].resetPow(180 + n - 10);
+				n = (n * n) % lamp.length;
+				lamp[n].resetPow(180 + n);
+			}
+			
+			for(i = 0; i < lamp.length; i++){
+				lamp[i].draw(f.lamp, bg);
+			}
+			
+		});
+		
+	},
+	
 	drawCutCase: function()
 	{
 		var bg = scrollByName('bg3')
@@ -432,12 +528,13 @@ HuTop.prototype = {
 			, cto = cellhto
 			, dsc = function(a, b, c){bg.drawSpriteChunk(a, b, c);}
 			, self = this
-			, y = cto(6)
+			, y = cto(6) //最終的に表示させる位置
 			, rect = makeRect(cto(0), cto(0), cto(20), cto(5))
 		;
 		
 		dsc(this.thanks == 42 ? t : f.hitokuchihu, 0, rect.y);
 		bg.setRasterHorizon(rect.y, 0, y);
+//		bg.setRasterHorizon(y, 0, rect.y + y);
 
 		this.pushStackDraw('title', function(){
 			var cto = cellhto
@@ -445,7 +542,6 @@ HuTop.prototype = {
 			, cnt = self.drawCount
 			, endcnt = 300
 			, diff = endcnt - cnt
-			// , d = Math.sin(diff) * 0.5
 			, x
 			;
 			if(diff > 0){
@@ -458,6 +554,7 @@ HuTop.prototype = {
 					bg.setRasterHorizon(rect.y, 0, y);
 				
 			}
+			
 			
 			
 		});
@@ -473,9 +570,9 @@ HuTop.prototype = {
 			, self = this
 			, y = cto(10.5)
 			, rect = makeRect(cto(6), cto(5), cto(3), cto(3))
-		;	
+		;
 		dsc(f.tekt_01, rect.x, rect.y);
-		// return;
+//		 return;
 		this.removeStackDraw('tektmogmog');
 		dsc = null;
 		bg.setRasterHorizon(rect.y, 0, y);
@@ -614,6 +711,8 @@ HuTop.prototype = {
 			, conveyor = 256 + huDown
 			, x = cto(3)
 			, pos, rate, posx
+			, hu_h = f.hu_plane.h
+			, slideTop = cto(2)
 			, cnt = self.drawCount % conveyor
 			// , height = cto(3)
 			;
@@ -621,7 +720,7 @@ HuTop.prototype = {
 				if(cnt == 0){dsc(f.hu_plane, 0, huY);}
 				rate = cto(4) / firstWait;
 				pos = cto(4) - (rate * cnt) - 0;
-				bg.setRasterHorizon(huY, 0, -256);
+				bg.setRasterHorizon(huY, 0, -280);
 				bg.setRasterHorizon(pressY, 0, pos | 0);
 			}else if(cnt < caseIn){
 				cnt = (cnt - firstWait);
@@ -657,6 +756,7 @@ HuTop.prototype = {
 				bg.setRasterHorizon(huY, posx | 0, pos | 0);
 				bg.setRasterHorizon(pressY, 0, cto(4));
 			}
+
 			// bg.setRasterHorizon(huY + height, 0, 0);
 			dsc = null;
 			cto = null;
@@ -673,7 +773,7 @@ HuTop.prototype = {
 			,conY = cto(9)
 		;
 		dsc(f.conveyor, cto(11), conY);
-		// return;
+//		 return;
 		// dsc(f.conveyor, cto(11), cto(13));
 		dsc = null;
 		this.pushStackDraw('conveyor', function(){
@@ -683,10 +783,12 @@ HuTop.prototype = {
 			, rasdis = 3
 			, cuffpos = 4
 			, rasdis_b = 1
-			, offset_b = cuffpos + 2
+			, offset_b = cuffpos + 3
 			, pos = ((self.drawCount / 8) | 0) % len
 			;
-			
+//			if(self.drawCount % 30 == 0){
+//				console.log(pos);
+//			}
 			for(i = 0; i < len; i++){
 				start = ((i - pos + len) % 4);
 				if(i < cuffpos){
@@ -697,11 +799,75 @@ HuTop.prototype = {
 					bg.setRasterHorizon(start + conY, x - (i * rasdis), y + i);
 				}
 			}
+
+			
 			cto = null;
 		});
 		cto = null;
 	}
 
+};
+
+function LampBlight(){return;}
+LampBlight.prototype = {
+	init: function(x, y, seed){
+//		this.sprite = new makeSpriteChunk('');
+		this.count = seed;
+		this.pow = 0;
+		this.x = x;
+		this.y = y;
+		this.duration = 180;
+		this.duration_h = 90;
+		this.blightNums = 3;
+		this.duration_d = (this.duration_h / this.blightNums) | 0;
+		this.duration_b = [5, 15, 90]
+		this.lampTypes = 4;
+		this.lampNum = this.seedLampNum(seed); //0~3
+		this.offNum = 8;
+	},
+	
+	resetPow: function(pow){
+		if(this.pow < this.duration_b[0]){
+			this.pow = pow == null ? this.duration : pow;
+		}
+	},
+	
+	seedLampNum: function(seed){
+		return (seed + (seed * (this.x + this.y) + (seed * this.x * this.y))) % this.lampTypes;
+	},
+	
+	incLampType: function(){
+		if(this.pow < this.duration_b[0]){
+			this.lampNum = (this.lampNum + 1) % this.lampTypes;
+		}
+	},
+	
+	draw: function(lampSprites, bg){
+		var c, b, w, p = this.pow;
+		if(p == 0){
+			return;
+		}
+		//0~90 : 90~0
+		p = p >= this.duration_h ? this.duration - p - 1: p;
+		
+		//blight
+//		b = (p / this.duration_d) | 0;
+		b = 0;
+		b = p > this.duration_b[0] ? 1 : b;
+		b = p > this.duration_b[1] ? 2 : b;
+		//colorType
+		c = (this.lampNum * 2);
+		if(b == 2){
+			if(p == this.duration_b[1] + 1){
+				bg.drawSpriteChunk(lampSprites[b + c - 1], this.x, this.y);
+			}
+		}else if(b == 1){
+			bg.drawSpriteChunk(lampSprites[b + c - 1], this.x, this.y);
+		}else{
+			bg.drawSpriteChunk(lampSprites[this.offNum], this.x, this.y);
+		}
+		this.pow--;
+	},
 };
 
 function printDebug(val, row){
@@ -762,12 +928,13 @@ DebugCell.prototype = {
 			, fgcol = COLOR_WHITE
 		;
 		if(this.cellSprite == null){
-			this.cellSprite = this.word.getSpriteArray('◯', COLOR_RED);
+//			this.cellSprite = this.word.getSpriteArray('◯', COLOR_RED);
 			// console.log(this.cellSprite);
 		}
 
 		this.word.setScroll(scroll);
-		scroll.drawSpriteChunk(this.cellSprite, x, y);
+//		scroll.drawSpriteChunk(this.cellSprite, x, y);
+		this.word.print('◯', x, y, COLOR_RED);
 		
 		this.word.print((cx < 10 ? 'x:0' : 'x:') + cx + '', wx - cto(3), wy - cto(2), fgcol);
 		this.word.print((cy < 10 ? 'y:0' : 'y:') + cy + '', wx- cto(3), wy - cto(1), fgcol);
@@ -790,14 +957,15 @@ function mainDraw()
 	if(self.debug != null){
 		self.debug.draw(scr.sprite);
 	}
-	// HU.drawbgBatch();
 	HU.drawStackDraw();
 	
 	drawCanvasStacks(3200);
 	
 	scr.bg1.drawto(scr.view);
-	scr.bg2.rasterto(scr.view);
-	scr.bg3.rasterto(scr.view);
+//	scr.bg2.rasterto(scr.view);
+//	scr.bg3.rasterto(scr.view);
+	scr.bg2.rasterfrom(scr.view);
+	scr.bg3.rasterfrom(scr.view);
 	scr.sprite.drawto(scr.view);
 	scr.sprite.clear();
 	screenView(scr.screen,scr.view);
